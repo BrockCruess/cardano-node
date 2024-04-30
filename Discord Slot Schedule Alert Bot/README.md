@@ -92,9 +92,9 @@ This Python script runs at the start of every new epoch and sends you your stake
 
 - Install Python 3 or newer.
 
-- Run this command to install the required Python package for Discord:
+- Run this command to install the required packages for the Python script:
 ```
-pip install discord
+pip install discord asyncio
 ```
 
 - In the following command, update `HOUR=` and `MINUTE=` to your server's local time equivelant of `21:47 UTC` as well as `SCRIPT_PATH=` to the directory where you'd like to store the Python script and run it from (with no slash at the end), then run the whole command to download and schedule the Python script. If your Python location is not `/usr/bin/python3` please also update `PYTHON=` in this command:
