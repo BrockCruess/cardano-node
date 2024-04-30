@@ -4,7 +4,7 @@ This Python script runs at the start of every new epoch and sends you your stake
 
 <br/>
 
-## Bot setup:
+## Setup Instructions:
 
 ### 1. Create a new Discord server:
 
