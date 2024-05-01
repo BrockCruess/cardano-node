@@ -1,3 +1,7 @@
+<h1 align="center">
+Epoch Boundary Reboot<br/><br/>
+</h1>
+
 Regular server reboots are a healthy way to prevent memory leaks and reclaim resources from tasks that have been running for a long time.
 
 In the case of Cardano nodes, I like to recommend a reboot at the start of every epoch. Because Cardano epochs are every 5 days, but not every 5 calendar days, it can be a little tricky to schedule reboots accordingly.
