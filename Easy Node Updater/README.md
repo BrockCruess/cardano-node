@@ -1,3 +1,7 @@
+<h1 align="center">
+Easy Node Updater<br/><br/>
+</h1>
+
 Are you tired of downloading new pre-compiled binaries, untarring everything then copying `cardano-node` and `cardano-cli` to the right directory every time there's a new update? Wow, that's lazy, but I feel you. Let me help!
 
 This handy little script will download the latest official release of [Cardano Node](https://github.com/IntersectMBO/cardano-node), extract the files, stop your node, copy `cardano-node` and `cardano-cli` to the directory of your preference, then restart your node - all with some nice console printouts for confirmations along the way and a nice cleanup option at the end.
