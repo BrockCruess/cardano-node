@@ -1,4 +1,6 @@
-# Discord Slot Schedule Alerts
+<h1 align="center">
+Discord Slot Schedule Alerts<br/><br/>
+</h1>
 
 This Python script runs at the start of every new epoch and sends you your stake pool's assigned slot schedule via a Discord private message.
 
