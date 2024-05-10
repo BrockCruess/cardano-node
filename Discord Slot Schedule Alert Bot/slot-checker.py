@@ -7,7 +7,7 @@ TOKEN = "bot.token_example" # Your Discord bot token
 USER_ID = "1234567890" # Your Discord user id (turn on Developer Mode to acquire this)
 POOL_ID = "0df0f6e5a3191520aa0a58268c38fe608d1d931766fc006635f3f2b1" # Your pool id hash
 CARDANO_CLI = "/path/to/cardano-cli" # Path to your cardano-cli
-SOCKET_PATH = "/path/to/node.socket"
+SOCKET_PATH = "/path/to/node.socket" # Path to your node socket
 SHELLEY_GENESIS = "/path/to/shelley-genesis.json" # Path to your Shelley genesis file
 VRF_SKEY = "/path/to/pool/vrf.skey" # Path to your vrf.skey file
 ##########################################################################################
