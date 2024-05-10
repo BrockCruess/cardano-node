@@ -6,7 +6,7 @@ Regular server reboots are a healthy way to prevent memory leaks and reclaim res
 
 In the case of Cardano nodes, I like to recommend a reboot at the start of every epoch. Because Cardano epochs are every 5 days, but not every 5 calendar days, it can be a little tricky to schedule reboots accordingly.
 
-Below is an easy-to-configure command that will create a crontab entry that will run once per day at 21:50 UTC (5 minutes after epoch boundary time) and use math to calculate if it's an epoch boundary day. If it is an epoch boundary day it will reboot the server.
+Below is an easy-to-configure command that will create a crontab entry that will run once per day at 21:55 UTC (10 minutes after epoch boundary time) and use math to calculate if it's an epoch boundary day. If it is an epoch boundary day it will reboot the server.
 
 <br>
 
