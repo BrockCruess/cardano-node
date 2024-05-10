@@ -10,11 +10,11 @@ Below is an easy-to-configure command that will create a crontab entry that will
 
 <br>
 
-In the following command, update `HOUR=` and `MINUTE=` to your server's local time equivelant of `21:50 UTC`. If your timezone changes (daylight savings for example), please ensure your server's local time changes appropriately, otherwise set `HOUR` to both hours (comma-separated) that could be UTC's 21st hour. For example, EST/EDT would set `HOUR=16,17`
+In the following command, update `HOUR=` and `MINUTE=` to your server's local time equivelant of `21:55 UTC`. If your timezone changes (daylight savings for example), please ensure your server's local time changes appropriately, otherwise set `HOUR` to both hours (comma-separated) that could be UTC's 21st hour. For example, EST/EDT would set `HOUR=16,17`
 
 ```
 HOUR=21
-MINUTE=50
-crontabentry="$MINUTE $HOUR * * * [ \$(( (\$(date -u +\%s) - \$(date -u -d '2024-04-03 21:50:00' +\%s)) % (86400 * 5) )) -eq 0 ] && /usr/sbin/shutdown -r now"
+MINUTE=55
+crontabentry="$MINUTE $HOUR * * * bash -c '(( ( \$(date -u +\%s) - \$(date +\%s -u -d '2023-03-21 21:55:00') ) / 86400 \% 5 -lt 5 )) && /usr/sbin/shutdown -r now'"
 (crontab -l ; echo "$crontabentry")| crontab -
 ```
