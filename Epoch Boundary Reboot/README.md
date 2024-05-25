@@ -15,6 +15,6 @@ In the following command, update `HOUR=` and `MINUTE=` to your server's local ti
 ```
 HOUR=21
 MINUTE=55
-crontabentry="$MINUTE $HOUR * * * bash -c '(( ( \$(date -u +\%s) - \$(date -u +\%s -d \"2023-03-21 21:55:00\") ) / 86400 \% 5 < 5 )) && /usr/sbin/shutdown -r now'"
+crontabentry="$MINUTE $HOUR * * * bash -c '(( ( \$(date -u +\%s) - \$(date -u +\%s -d \"2023-03-21 21:55:00\") ) / 86400 \% 5 == 0 )) && /usr/sbin/shutdown -r now'"
 (crontab -l ; echo "$crontabentry")| crontab -
 ```
