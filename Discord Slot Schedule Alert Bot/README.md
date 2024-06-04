@@ -105,7 +105,7 @@ HOUR=21
 MINUTE=47
 SCRIPT_PATH=/directory/to/store/script/with/no/shash/at/end
 PYTHON=/usr/bin/python3
-curl https://raw.githubusercontent.com/BrockCruess/cardano-node/main/Slot%20Leader%20Checker/slot-checker.py > $SCRIPT_PATH/slot-checker.py
+curl https://raw.githubusercontent.com/BrockCruess/cardano-node/main/Discord%20Slot%20Schedule%20Alert%20Bot/slot-checker.py > $SCRIPT_PATH/slot-checker.py
 crontabentry="$MINUTE $HOUR * * * bash -c '(( ( \$(date -u +\%s) - \$(date -u +\%s -d '2023-03-21 21:47:00') ) / 86400 \% 5 == 0 )) && $PYTHON $SCRIPT_PATH/slot-checker.py'"
 (crontab -l ; echo "$crontabentry")| crontab -
 cd $SCRIPT_PATH
