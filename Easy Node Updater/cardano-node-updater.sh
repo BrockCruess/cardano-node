@@ -14,9 +14,8 @@ if test "$CURRENT" = "$LATEST"; then
     echo "***********************" && \
     echo ""
 else
-    cd "$SCRIPTPATH" && \
-    mkdir "$LATEST" && \
-    cd "$LATEST" && \
+    mkdir "$SCRIPTPATH/$LATEST" && \
+    cd "$SCRIPTPATH/$LATEST" && \
     echo "" && \
     echo "Downloading latest release of cardano-node and cardano-cli pre-compiled binaries from IntersectMBO's cardano-node repo:" && \
     echo "https://github.com/IntersectMBO/cardano-node/releases/tag/$LATEST" && \
@@ -43,8 +42,8 @@ else
     NEW=$($NODE_LOCATION/cardano-node --version | grep -o -E '[0-9]+\.[0-9]+\.[0-9]+' | head -1) && \
     TIME=$(date) && \
     cd "$SCRIPTPATH" && \
-    echo "" >> $SCRIPTPATH/cardano-updates.log && \
-    echo "$TIME: Updated from $CURRENT --> $NEW" >> $SCRIPTPATH/cardano-updates.log && \
+    echo "" >> cardano-updates.log && \
+    echo "$TIME: Updated from $CURRENT --> $NEW" >> cardano-updates.log && \
     echo "" && \
     echo "*********************" && \
     echo "Cardano Node Updated!" && \
@@ -60,7 +59,7 @@ else
     echo "Please input 1 for Yes or 2 for No:" && \
     select yn in "Yes" "No"; do
         case $yn in
-            Yes ) rm -rf "$SCRIPTPATH/$LATEST" && echo "" && echo "Downloaded files deleted." && echo "See you next time!" && echo ""; break;;
+            Yes ) rm -rf "$LATEST" && echo "" && echo "Downloaded files deleted." && echo "See you next time!" && echo ""; break;;
             No ) echo "" && echo "Downloaded files remain in $SCRIPTPATH/$LATEST/" && echo "See you next time!" && echo "" && exit;;
         esac
     done
