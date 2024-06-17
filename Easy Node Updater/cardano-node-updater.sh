@@ -18,7 +18,8 @@ else
     mkdir "$LATEST" && \
     cd "$LATEST" && \
     echo "" && \
-    echo "Downloading latest release of cardano-node and cardano-cli..." && \
+    echo "Downloading latest release of cardano-node and cardano-cli pre-compiled binaries from IntersectMBO's cardano-node repo:" && \
+    echo "https://github.com/IntersectMBO/cardano-node/releases/tag/$LATEST" && \
     wget -q "https://github.com/IntersectMBO/cardano-node/releases/download/$LATEST/cardano-node-$LATEST-linux.tar.gz" && \
     echo "Done!" && \
     echo "" && \
