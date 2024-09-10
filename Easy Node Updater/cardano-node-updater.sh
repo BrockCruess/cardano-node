@@ -26,6 +26,10 @@ else
     tar -xf "cardano-node-$LATEST-linux.tar.gz" && \
     echo "Done!" && \
     echo "" && \
+    echo "Creating symlink as 'latest'..." && \
+    ln -sf $LATEST latest && \
+    echo "Done!" && \
+    echo "" && \
     echo "Stopping cardano-node..." && \
     sudo systemctl stop cardano-node &>/dev/null && \
     echo "Done!" && \
