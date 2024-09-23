@@ -27,7 +27,7 @@ else
     echo "Done!" && \
     echo "" && \
     echo "Creating symlink as 'latest'..." && \
-    ln -sf $LATEST latest && \
+    ln -sf $SCRIPTPATH/$LATEST $SCRIPTPATH/latest && \
     echo "Done!" && \
     echo "" && \
     echo "Stopping cardano-node..." && \
