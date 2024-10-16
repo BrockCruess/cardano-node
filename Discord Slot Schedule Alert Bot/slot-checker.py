@@ -36,9 +36,8 @@ async def run_command(command):
 
 async def send_output(output):
     try:
-        output = output.replace("-------------------------------------------------------------", "-----------------------------------------------")
-# To do: Update this later for better spacing:
-#        output = output.replace("                   ", "     ")
+        output = output.replace("-------------------------------------------------------------", "---------------------------------------")
+        output = output.replace("                          ", "                  ")
         for line in output.split('\n'):
             user = await bot.fetch_user(USER_ID)
             await user.send(line)
