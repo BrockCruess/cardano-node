@@ -36,7 +36,7 @@ async def run_command(command):
 
 async def send_output(output):
     try:
-        output = output.replace("-------------------------------------------------------------", "------------------------------------------")
+        output = output.replace("-------------------------------------------------------------", "-----------------------------------------------")
 # To do: Update this later for better spacing:
 #        output = output.replace("                   ", "     ")
         for line in output.split('\n'):
