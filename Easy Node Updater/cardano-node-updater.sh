@@ -32,6 +32,7 @@ else
     echo -e "${GREEN}Done!${NC}" && \
     echo "" && \
     echo -e "${YELLOW}Creating symlink as 'latest'...${NC}" && \
+    rm -rf $SCRIPTPATH/latest && \
     ln -sf $SCRIPTPATH/$LATEST $SCRIPTPATH/latest && \
     echo -e "${GREEN}Done!${NC}" && \
     echo "" && \
