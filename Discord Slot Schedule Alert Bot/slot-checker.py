@@ -13,7 +13,7 @@ VRF_SKEY = "/path/to/pool/vrf.skey" # Path to your vrf.skey file
 ##########################################################################################
 
 # Leadership schedule query command compiled from above info
-COMMAND = (f"{CARDANO_CLI} query leadership-schedule --mainnet --socket-path {SOCKET_PATH} --genesis {SHELLEY_GENESIS} --stake-pool-id {POOL_ID} --vrf-signing-key-file {VRF_SKEY} --current")
+COMMAND = (f"{CARDANO_CLI} conway query leadership-schedule --mainnet --socket-path {SOCKET_PATH} --genesis {SHELLEY_GENESIS} --stake-pool-id {POOL_ID} --vrf-signing-key-file {VRF_SKEY} --current")
 
 async def run_command(command):
     try:
