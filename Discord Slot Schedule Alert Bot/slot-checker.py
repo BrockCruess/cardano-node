@@ -35,7 +35,7 @@ async def run_command(command):
         return f"Error occurred: {e}"
 
 async def send_output(output):
-    try:
+    try:  # Reformat the spacing to better suit a Discord message
         output = output.replace("-------------------------------------------------------------", "-----------------------------------------")
         output = output.replace("                          ", "                  ")
         output = output.replace("                   ", "           ")
