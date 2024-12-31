@@ -42,7 +42,7 @@ async def send_output(output):
         for line in output.split('\n'):
             user = await bot.fetch_user(USER_ID)
             await user.send(line)
-            print("Message sent to user:", USER_ID)
+        print("Message sent to user:", USER_ID)
     except discord.HTTPException as e:
         print("An error occurred while sending the message:", e)
     except Exception as e:
