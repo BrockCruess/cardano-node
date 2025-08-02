@@ -13,7 +13,13 @@ VRF_SKEY = "/path/to/pool/vrf.skey" # Path to your vrf.skey file
 ##########################################################################################
 
 # Leadership schedule query command compiled from above info
-COMMAND = (f"{CARDANO_CLI} conway query leadership-schedule --mainnet --socket-path {SOCKET_PATH} --genesis {SHELLEY_GENESIS} --stake-pool-id {POOL_ID} --vrf-signing-key-file {VRF_SKEY} --current")
+COMMAND = (
+    f"{CARDANO_CLI} conway query leadership-schedule "
+    f"--mainnet --socket-path {SOCKET_PATH} "
+    f"--genesis {SHELLEY_GENESIS} "
+    f"--stake-pool-id {POOL_ID} "
+    f"--vrf-signing-key-file {VRF_SKEY} --current"
+)
 
 async def run_command(command):
     try:
@@ -33,16 +39,27 @@ async def run_command(command):
         return "Command timed out."
     except Exception as e:
         return f"Error occurred: {e}"
+# Reformat the spacing to better suit a Discord message
+def format_output(raw_output):
+    try:
+        schedule = json.loads(raw_output)
+        lines = []
+        lines.append("SlotNo                  UTC Time")
+        lines.append("-----------------------------------------")
+        for item in schedule:
+            slot = str(item['slotNumber'])
+            time = item['slotTime'].replace("T", " ").replace("Z", " UTC")
+            lines.append(f"{slot:<23}{time}")
+        return lines
+    except Exception as e:
+        return [f"Error parsing output: {e}"]
 
-async def send_output(output):
-    try:  # Reformat the spacing to better suit a Discord message
-        output = output.replace("-------------------------------------------------------------", "-----------------------------------------")
-        output = output.replace("                          ", "                  ")
-        output = output.replace("                   ", "           ")
-        for line in output.split('\n'):
-            user = await bot.fetch_user(USER_ID)
+async def send_output(lines):
+    try:
+        user = await bot.fetch_user(USER_ID)
+        for line in lines:
             await user.send(line)
-        print("Message sent to user:", USER_ID)
+            print("Message sent to user:", USER_ID)
     except discord.HTTPException as e:
         print("An error occurred while sending the message:", e)
     except Exception as e:
@@ -50,9 +67,9 @@ async def send_output(output):
 
 async def main():
     output = await run_command(COMMAND)
-    print("Command output:", output)
-
-    await send_output(output)
+    print("Raw command output:", output)
+    lines = format_output(output)
+    await send_output(lines)
 
 intents = discord.Intents.default()
 bot = discord.Client(intents=intents)
