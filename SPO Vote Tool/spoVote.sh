@@ -106,20 +106,13 @@ if [[ $mode == create ]]; then
             exit
         fi
     done && \
-    # Sign the vote transaction
+    # Build and sign the vote transaction
     ${CARDANO_CLI} query utxo \
     --address $(cat "${PAYMENT_ADDR}") \
     --mainnet > tmp/fullUtxo.out && \
-    tx_in="" && \
-    while read -r utxo; do
-        if [[ ! "$utxo" =~ ^- && ! "$utxo" =~ TxHash && ! -z "$utxo" ]]; then
-            in_addr=$(awk '{ print $1 }' <<< "${utxo}")
-            idx=$(awk '{ print $2 }' <<< "${utxo}")
-            tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
-        fi
-    done < tmp/fullUtxo.out && \
+    tx_in="$(sed -n 's/^[[:space:]]*\"\([^\"]\{1,\}\)\":.*/\1/p' tmp/fullUtxo.out | head -n 1)" && \
     ${CARDANO_CLI} conway transaction build \
-    ${tx_in} \
+    --tx-in "${tx_in}" \
     --change-address $(cat "${PAYMENT_ADDR}") \
     --vote-file "votes/${actionID}.vote" \
     --witness-override 2 \
@@ -175,20 +168,13 @@ elif [[ $mode == sign ]]; then
             exit
         fi
     done
-    # Sign the vote transaction
+    # Build and sign the vote transaction
     ${CARDANO_CLI} query utxo \
     --address $(cat "${PAYMENT_ADDR}") \
     --mainnet > tmp/fullUtxo.out && \
-    tx_in="" && \
-    while read -r utxo; do
-        if [[ ! "$utxo" =~ ^- && ! "$utxo" =~ TxHash && ! -z "$utxo" ]]; then
-            in_addr=$(awk '{ print $1 }' <<< "${utxo}")
-            idx=$(awk '{ print $2 }' <<< "${utxo}")
-            tx_in="${tx_in} --tx-in ${in_addr}#${idx}"
-        fi
-    done < tmp/fullUtxo.out && \
+    tx_in="$(sed -n 's/^[[:space:]]*\"\([^\"]\{1,\}\)\":.*/\1/p' tmp/fullUtxo.out | head -n 1)" && \
     ${CARDANO_CLI} conway transaction build \
-    ${tx_in} \
+    --tx-in "${tx_in}" \
     --change-address $(cat "${PAYMENT_ADDR}") \
     --vote-file "${voteFile}" \
     --witness-override 2 \
