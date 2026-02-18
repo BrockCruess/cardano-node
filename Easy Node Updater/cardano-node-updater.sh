@@ -2,6 +2,8 @@
 #################################################################################
 # Update with the location from which your cardano-node and cardano-cli are run:
 NODE_LOCATION="$HOME/.local/bin/"
+# Update with your CPU architecture - Options: amd64 or arm64 (case-sensitive)
+ARCH="amd64"
 #################################################################################
 # Leave the rest of this:
 LATEST=$(curl -s https://api.github.com/repos/IntersectMBO/cardano-node/releases/latest | grep -o -P '"tag_name": "\K[^"]+') && \
@@ -24,11 +26,11 @@ else
     echo "" && \
     echo -e "${YELLOW}Downloading latest release of cardano-node and cardano-cli pre-compiled binaries from IntersectMBO's cardano-node repo:${NC}" && \
     echo "https://github.com/IntersectMBO/cardano-node/releases/tag/$LATEST" && \
-    wget -q "https://github.com/IntersectMBO/cardano-node/releases/download/$LATEST/cardano-node-$LATEST-linux.tar.gz" && \
+    wget -q "https://github.com/IntersectMBO/cardano-node/releases/download/$LATEST/cardano-node-$LATEST-linux-$ARCH.tar.gz" && \
     echo -e "${GREEN}Done!${NC}" && \
     echo "" && \
     echo -e "${YELLOW}Extracting files...${NC}" && \
-    tar -xf "cardano-node-$LATEST-linux.tar.gz" && \
+    tar -xf "cardano-node-$LATEST-linux-$ARCH.tar.gz" && \
     echo -e "${GREEN}Done!${NC}" && \
     echo "" && \
     echo -e "${YELLOW}Creating symlink as 'latest'...${NC}" && \
